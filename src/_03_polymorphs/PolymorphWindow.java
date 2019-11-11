@@ -5,6 +5,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -17,8 +18,13 @@ public class PolymorphWindow extends JPanel implements ActionListener{
     private JFrame window;
     private Timer timer;
     
-    Polymorph bluePoly;
-    Polymorph redPoly;
+    BluePolymorph bluePoly;
+    RedMorph redPoly;
+    MovingMorph movingMorph;
+    CustomMorph customMorph;
+    
+    ArrayList<Polymorph> Polymorphs = new ArrayList<Polymorph>();
+    
     
     public static void main(String[] args) {
    	 new PolymorphWindow().buildWindow();
@@ -32,8 +38,19 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 window.pack();
    	 window.setVisible(true);
    	 
+   	
    	 bluePoly = new BluePolymorph(50, 50);
-   	 redPoly = new RedMorph(75, 200);
+    redPoly = new RedMorph(75, 200);
+   	 movingMorph = new MovingMorph(100, 300);
+   	 customMorph = new CustomMorph(50, 400);
+   	 
+
+   	 Polymorphs.add(bluePoly);
+   	 Polymorphs.add(redPoly);
+   	 Polymorphs.add(movingMorph);
+   	 Polymorphs.add(customMorph);
+   	 
+   	window.addMouseMotionListener(customMorph);
    	 
    	 timer = new Timer(1000 / 30, this);
    	 timer.start();
@@ -44,15 +61,23 @@ public class PolymorphWindow extends JPanel implements ActionListener{
    	 g.setColor(Color.LIGHT_GRAY);
    	 g.fillRect(0, 0, 500, 500);
    	
+   	 for (Polymorph p : Polymorphs) {
+   		 p.draw(g);
+   	 }
    	 //draw polymorph
-   	 bluePoly.draw(g);
-   	 redPoly.draw(g);
+   	// bluePoly.draw(g);
+   	// redPoly.draw(g);
+   	// movingMorph.draw(g);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
    	 repaint();
-   	 bluePoly.update();
+   	 for(Polymorph p : Polymorphs) {
+   		p.update();
+   	 }
+   	// bluePoly.update();
+   	// movingMorph.update();
    	 
     }
 }
