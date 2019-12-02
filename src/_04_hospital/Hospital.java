@@ -26,6 +26,52 @@ public class Hospital {
 		
 		return patients;
 	}
+
+	public void assignPatientsToDoctors() {
+//		int patience = 3;
+//		System.out.println(patients.size());
+//		for(int i = 0; i < doctors.size(); i++) {
+//			
+//			for(int j = 0; j < patients.size()-5; j++) {
+//				if(patience == 0) {
+//					
+//				}
+//				if(doctors.get(i).getPatients().size() < 3) {
+//					try {
+//						doctors.get(i).assignPatient(patients.get(j));
+//						patience -= 1;
+//					} catch (DoctorFullException e) {
+//						// TODO Auto-generated catch block
+//						e.printStackTrace();
+//					}
+//					System.out.println(doctors.get(i).getPatients().size());
+//				}
+//				else {
+//					break;
+//				}
+//			}
+//			
+//		}
+		int patience = patients.size() ;
+		for(int i = 0; i < doctors.size(); i++) {
+			
+			for(int j = 0; j < 3; j++) {
+				System.out.println(patients.size());
+				if(patience == 0) {
+					break;
+				}
+				try {
+					doctors.get(i).assignPatient(patients.get(j));
+					patience -=1;
+				} catch (DoctorFullException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			
+		}
+		
+	}
 	
 	
 }

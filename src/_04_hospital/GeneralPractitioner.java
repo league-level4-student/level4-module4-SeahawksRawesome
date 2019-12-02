@@ -8,7 +8,9 @@ public class GeneralPractitioner extends Doctor {
 	}
 
 	public void doMedicine() {
-		Patient patient = new Patient();
-		patient.checkPulse();
+		patients.get(0).checkPulse();
+		patients.get(1).checkPulse();
+		System.out.println(patients.get(0).feelsCaredFor);
+		System.out.println(patients.get(1).feelsCaredFor);
 	}
 }

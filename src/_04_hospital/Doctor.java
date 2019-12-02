@@ -5,18 +5,21 @@ import java.util.ArrayList;
 public class Doctor{
 	ArrayList<Patient> patients = new ArrayList<Patient>();
 		public boolean performsSurgery() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	public boolean makesHouseCalls() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
-	public void assignPatient(Patient patient) {
-		// TODO Auto-generated method stub
-		patients.add(patient);
+	public void assignPatient(Patient patient) throws DoctorFullException {
+		if(patients.size() >= 3) {
+			throw new DoctorFullException();
+		}
+		else {
+			patients.add(patient);
+		}
+		
 	}
 	
 	public ArrayList<Patient> getPatients() {
@@ -24,8 +27,8 @@ public class Doctor{
 	}
 	
 	public void doMedicine() {
-		Patient patient = new Patient();
-		patient.checkPulse();
+	patients.get(0).checkPulse();
+	patients.get(1).checkPulse();
 	}
 
 
